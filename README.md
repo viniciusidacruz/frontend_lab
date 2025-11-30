@@ -79,10 +79,10 @@ O **Frontend Lab** é um repositório de estudos práticos focado em recursos na
 | Elemento     | Descrição                                                      | Status |
 | :----------- | :------------------------------------------------------------- | :----: |
 | `<dialog>`   | Modal nativo com backdrop, acessibilidade e fechamento com ESC |   ✅   |
-| `<details>`  | Accordion nativo sem JavaScript                                |   🔜   |
-| `<datalist>` | Autocomplete nativo para inputs                                |   🔜   |
-| `<template>` | Templates HTML reutilizáveis                                   |   🔜   |
-| `<picture>`  | Imagens responsivas otimizadas                                 |   🔜   |
+| `<details>`  | Accordion nativo sem JavaScript                                |   ✅   |
+| `<datalist>` | Autocomplete nativo para inputs                                |   ✅   |
+| `<template>` | Templates HTML reutilizáveis                                   |   ✅   |
+| `<picture>`  | Imagens responsivas otimizadas                                 |   ✅   |
 
 ### JavaScript APIs
 

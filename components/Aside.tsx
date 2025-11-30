@@ -32,11 +32,23 @@ export const Aside = () => {
 
       <Logo collapsed={!isOpen} />
 
-      <nav aria-label="Menu principal">
+      <nav aria-label="Menu principal" className="overflow-y-auto flex-1">
         <ListMenu.Root>
-          <ListMenu.Title>HTML</ListMenu.Title>
+          <ListMenu.Title>{isOpen ? "HTML" : ""}</ListMenu.Title>
           <ListMenu.Item>
-            <NavLink href="/dialog">{isOpen ? "Dialog" : "D"}</NavLink>
+            <NavLink href="/dialog">{isOpen ? "Dialog" : "Di"}</NavLink>
+          </ListMenu.Item>
+          <ListMenu.Item>
+            <NavLink href="/details">{isOpen ? "Details" : "De"}</NavLink>
+          </ListMenu.Item>
+          <ListMenu.Item>
+            <NavLink href="/datalist">{isOpen ? "Datalist" : "Da"}</NavLink>
+          </ListMenu.Item>
+          <ListMenu.Item>
+            <NavLink href="/template">{isOpen ? "Template" : "Te"}</NavLink>
+          </ListMenu.Item>
+          <ListMenu.Item>
+            <NavLink href="/picture">{isOpen ? "Picture" : "Pi"}</NavLink>
           </ListMenu.Item>
         </ListMenu.Root>
       </nav>
