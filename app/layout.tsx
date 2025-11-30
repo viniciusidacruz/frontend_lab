@@ -14,6 +14,16 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Frontend Lab | Estudos de Vinicius Italo da Cruz",
   description: "Frontend Lab| Estudos de Vinicius Italo da Cruz",
+  icons: {
+    icon: "/favicon.ico",
+  },
+  keywords: ["HTML", "JavaScript", "React", "Next.js", "Tailwind CSS"],
+  authors: [
+    {
+      name: "Vinicius Italo da Cruz",
+      url: "https://github.com/viniciusidacruz",
+    },
+  ],
 };
 
 export default function RootLayout({
