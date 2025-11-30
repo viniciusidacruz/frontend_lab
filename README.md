@@ -94,7 +94,7 @@ O **Frontend Lab** é um laboratório de estudos e experimentos práticos voltad
 | Ferramenta | Versão    |
 | :--------- | :-------- |
 | Node.js    | ≥ 22.14.0 |
-| Yarn       | ≥ 1.22.22 |
+| Yarn       | ≥ 1.22.19 |
 
 > ⚠️ **Importante:** Este projeto utiliza **apenas Yarn** como gerenciador de pacotes. O uso de `npm` ou `pnpm` está bloqueado.
 
