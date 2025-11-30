@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="public/logo-large.svg" width="120" alt="Frontend Lab" />
+  <img src="public/assets/svg/logo-large.svg" width="120" alt="Frontend Lab" />
 </p>
 
 <h1 align="center">Frontend Lab</h1>
 
 <p align="center">
-  <strong>Estudos e experimentos com HTML, JavaScript e React para desenvolvedores frontend</strong>
+  <strong>Laboratório de estudos frontend com foco em recursos nativos, arquiteturas e boas práticas</strong>
 </p>
 
 <p align="center">
@@ -23,8 +23,9 @@
 <p align="center">
   <a href="#-sobre">Sobre</a> •
   <a href="#-tecnologias">Tecnologias</a> •
-  <a href="#-conteúdos">Conteúdos</a> •
+  <a href="#-estrutura">Estrutura</a> •
   <a href="#%EF%B8%8F-como-executar">Como executar</a> •
+  <a href="#-contribuição">Contribuição</a> •
   <a href="#-autor">Autor</a>
 </p>
 
@@ -32,13 +33,22 @@
 
 ## 📖 Sobre
 
-O **Frontend Lab** é um repositório de estudos práticos focado em recursos nativos e APIs modernas do navegador. Aqui você encontra demonstrações interativas de elementos HTML, funcionalidades JavaScript e implementações React que muitos desenvolvedores desconhecem.
+O **Frontend Lab** é um laboratório de estudos e experimentos práticos voltado para desenvolvedores frontend. O projeto aborda desde recursos nativos do HTML e JavaScript até arquiteturas, design patterns e boas práticas de desenvolvimento.
+
+### O que você vai encontrar
+
+- 🏷️ **HTML Avançado** — Elementos nativos pouco explorados
+- ⚡ **JavaScript APIs** — APIs modernas do navegador
+- ⚛️ **React Patterns** — Padrões e técnicas avançadas
+- 🏗️ **Arquitetura** — Estruturas escaláveis e modulares
+- 📐 **Design Patterns** — SOLID, Clean Code e mais
+- 🎨 **CSS Moderno** — Técnicas e recursos atuais
 
 ### Por que este projeto?
 
-- 🎯 **Aprendizado prático** — Exemplos funcionais que você pode testar e modificar
-- 📚 **Documentação clara** — Explicações detalhadas de cada recurso
-- 🚀 **Código moderno** — Implementações com as melhores práticas atuais
+- 🎯 **Aprendizado prático** — Exemplos funcionais e interativos
+- 📚 **Documentação clara** — Explicações objetivas de cada recurso
+- 🚀 **Código moderno** — Implementações com as melhores práticas
 - 🌐 **Open source** — Contribua e aprenda com a comunidade
 
 ## 🚀 Tecnologias
@@ -46,53 +56,38 @@ O **Frontend Lab** é um repositório de estudos práticos focado em recursos na
 <table>
   <tr>
     <td align="center" width="96">
-      <img src="https://skillicons.dev/icons?i=html" width="48" height="48" alt="HTML" />
-      <br>HTML
-    </td>
-    <td align="center" width="96">
-      <img src="https://skillicons.dev/icons?i=js" width="48" height="48" alt="JavaScript" />
-      <br>JavaScript
+      <img src="https://skillicons.dev/icons?i=nextjs" width="48" height="48" alt="Next.js" />
+      <br>Next.js
     </td>
     <td align="center" width="96">
       <img src="https://skillicons.dev/icons?i=react" width="48" height="48" alt="React" />
       <br>React
     </td>
     <td align="center" width="96">
-      <img src="https://skillicons.dev/icons?i=nextjs" width="48" height="48" alt="Next.js" />
-      <br>Next.js
+      <img src="https://skillicons.dev/icons?i=typescript" width="48" height="48" alt="TypeScript" />
+      <br>TypeScript
     </td>
     <td align="center" width="96">
       <img src="https://skillicons.dev/icons?i=tailwind" width="48" height="48" alt="Tailwind" />
       <br>Tailwind
     </td>
-    <td align="center" width="96">
-      <img src="https://skillicons.dev/icons?i=typescript" width="48" height="48" alt="TypeScript" />
-      <br>TypeScript
-    </td>
   </tr>
 </table>
 
-## 📚 Conteúdos
+## 📁 Estrutura
 
-### HTML Avançado
-
-| Elemento     | Descrição                                                      | Status |
-| :----------- | :------------------------------------------------------------- | :----: |
-| `<dialog>`   | Modal nativo com backdrop, acessibilidade e fechamento com ESC |   ✅   |
-| `<details>`  | Accordion nativo sem JavaScript                                |   ✅   |
-| `<datalist>` | Autocomplete nativo para inputs                                |   ✅   |
-| `<template>` | Templates HTML reutilizáveis                                   |   ✅   |
-| `<picture>`  | Imagens responsivas otimizadas                                 |   ✅   |
-
-### JavaScript APIs
-
-| API                   | Descrição                         | Status |
-| :-------------------- | :-------------------------------- | :----: |
-| Intersection Observer | Detecção de elementos na viewport |   🔜   |
-| Web Animations        | Animações performáticas           |   🔜   |
-| Clipboard API         | Copiar/colar programaticamente    |   🔜   |
-
-_Mais conteúdos em desenvolvimento..._
+```
+├── app/                    # Páginas e rotas (Next.js App Router)
+├── shared/
+│   ├── components/         # Componentes reutilizáveis
+│   ├── constants/          # Constantes e dados
+│   ├── hooks/              # Hooks customizados
+│   └── config/             # Configurações e utilitários
+└── public/
+    └── assets/
+        ├── svg/            # Ícones e logos
+        └── images/         # Imagens
+```
 
 ## 🛠️ Como executar
 
@@ -104,10 +99,10 @@ git clone https://github.com/viniciusidacruz/frontend_lab.git
 cd frontend_lab
 
 # Instale as dependências
-npm install
+yarn install
 
 # Execute o projeto
-npm run dev
+yarn dev
 ```
 
 Acesse [http://localhost:3000](http://localhost:3000) no navegador.
@@ -144,8 +139,4 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 <p align="center">
   Feito com 💙 por <a href="https://github.com/viniciusidacruz">Vinicius da Cruz</a>
-</p>
-
-<p align="center">
-  <a href="#frontend-lab">⬆️ Voltar ao topo</a>
 </p>
