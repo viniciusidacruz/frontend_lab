@@ -30,7 +30,10 @@ export const DialogDemo = () => {
         aria-describedby="dialog-description"
       >
         <div className="p-6">
-          <h3 id="dialog-title" className="text-xl font-bold text-gray-800 mb-2">
+          <h3
+            id="dialog-title"
+            className="text-xl font-bold text-gray-800 mb-2"
+          >
             🎉 Dialog Nativo do HTML!
           </h3>
           <p id="dialog-description" className="text-gray-600 mb-6">
@@ -49,4 +52,3 @@ export const DialogDemo = () => {
     </>
   );
 };
-

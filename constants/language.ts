@@ -15,4 +15,3 @@ export const LANGUAGE_TITLE: Record<Language, string> = {
   [Language.JAVASCRIPT]: "JavaScript",
   [Language.REACT]: "React",
 };
-

@@ -91,7 +91,9 @@ export default function DialogPage() {
         </div>
       </div>
 
-      <Document.Pre>{isHTML ? DIALOG_CODE_HTML : DIALOG_CODE_REACT}</Document.Pre>
+      <Document.Pre>
+        {isHTML ? DIALOG_CODE_HTML : DIALOG_CODE_REACT}
+      </Document.Pre>
 
       <DialogDemo />
     </Document.Root>
