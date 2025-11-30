@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { ChevronLeft, Menu } from "lucide-react";
 
 import { cn } from "@/config/cn";
@@ -8,6 +7,7 @@ import { useToggleAside } from "@/hooks/useToggleAside";
 
 import { NavLink } from "@/components";
 import { ListMenu } from "./ListMenu";
+import { Logo } from "./Logo";
 
 export const Aside = () => {
   const { isOpen, toggleAside } = useToggleAside();
@@ -27,9 +27,7 @@ export const Aside = () => {
         {isOpen ? <ChevronLeft /> : <Menu />}
       </button>
 
-      <Link href="/" className="text-zinc-600 font-bold text-3xl mb-10">
-        {isOpen ? "Italo Studies" : "IS"}
-      </Link>
+      <Logo collapsed={!isOpen} />
 
       <ListMenu.Root>
         <ListMenu.Title>HTML</ListMenu.Title>
