@@ -65,8 +65,8 @@ export default function DatalistPage() {
         <Document.Blockquote>
           <Document.Code>Tipos compatíveis</Document.Code>
           <Document.Paragraph>
-            Funciona com diversos tipos de input: text, search, url, email,
-            tel, number, range e até color!
+            Funciona com diversos tipos de input: text, search, url, email, tel,
+            number, range e até color!
           </Document.Paragraph>
         </Document.Blockquote>
       </Document.BlockquoteContainer>
@@ -88,10 +88,11 @@ export default function DatalistPage() {
         </div>
       </div>
 
-      <Document.Pre>{isHTML ? DATALIST_CODE_HTML : DATALIST_CODE_REACT}</Document.Pre>
+      <Document.Pre>
+        {isHTML ? DATALIST_CODE_HTML : DATALIST_CODE_REACT}
+      </Document.Pre>
 
       <DatalistDemo />
     </Document.Root>
   );
 }
-

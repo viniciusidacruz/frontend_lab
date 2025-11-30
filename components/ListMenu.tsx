@@ -7,7 +7,10 @@ type TitleProps = ComponentProps<"h3">;
 type ItemProps = ComponentProps<"li">;
 
 const Root = ({ children, className, ...props }: RootProps) => (
-  <ul className={cn("mt-8 w-full", className)} {...props}>
+  <ul
+    className={cn("mt-8 w-full overflow-y-auto space-y-6", className)}
+    {...props}
+  >
     {children}
   </ul>
 );
