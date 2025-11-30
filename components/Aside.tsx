@@ -14,7 +14,7 @@ export const Aside = () => {
   return (
     <aside
       className={cn(
-        "bg-zinc-900 h-full shrink-0 relative transition-all duration-300 flex flex-col",
+        "bg-zinc-900 h-screen shrink-0 sticky top-0 transition-all duration-300 flex flex-col",
         isOpen ? "w-sm p-8" : "w-20 p-4 items-center"
       )}
       aria-label="Menu de navegação"

@@ -34,10 +34,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${poppins.variable} antialiased flex h-screen`}>
+      <body className={`${poppins.variable} antialiased flex min-h-screen`}>
         <Aside />
 
-        <main className="flex-1 h-full overflow-y-auto p-8">{children}</main>
+        <main className="flex-1 p-8">{children}</main>
       </body>
     </html>
   );
