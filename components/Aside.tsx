@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { NavLink } from "./NavLink";
+import { NavLink } from "@/components";
 
 export const Aside = () => (
   <aside className="w-sm bg-blue-600 h-full p-8 shrink-0">
