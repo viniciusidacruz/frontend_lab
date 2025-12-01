@@ -1,4 +1,4 @@
-import { CONTENT_CATEGORIES } from "@/shared/content";
+import { CONTENT_CATEGORIES } from "./content";
 
 export interface MenuItem {
   label: string;
@@ -22,3 +22,4 @@ export const MENU_SECTIONS: MenuSection[] = CONTENT_CATEGORIES.map(
     })),
   })
 );
+

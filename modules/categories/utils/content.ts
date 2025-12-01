@@ -1,4 +1,7 @@
-import { ContentCategoryConfig, ContentResource } from "../types";
+import {
+  ContentResource,
+  ContentCategoryConfig,
+} from "@/modules/categories/types/content";
 import { HTML_CATEGORY } from "./html";
 
 export const CONTENT_CATEGORIES: ContentCategoryConfig[] = [HTML_CATEGORY];

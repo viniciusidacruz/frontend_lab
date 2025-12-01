@@ -4,4 +4,7 @@ export { FeaturedPosts } from "./FeaturedPosts";
 export { PostCard } from "./PostCard";
 export { PostsList } from "./PostsList";
 export { SearchBar } from "./SearchBar";
-
+export { NotFound } from "./NotFound";
+export { PostContent } from "./PostContent";
+export { PostFooter } from "./PostFooter";
+export { PostHeader } from "./PostHeader";

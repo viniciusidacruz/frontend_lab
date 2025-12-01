@@ -1,4 +1,4 @@
-import { RichText, RichTextSegment } from "./types";
+import { RichText, RichTextSegment } from "../types/content";
 
 export const text = (value: string): RichTextSegment => ({
   type: "text",

@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { ContentRenderer } from "./ContentRenderer";
-import { CONTENT_CATEGORIES, getContentDefinition } from "@/shared/content";
+import { ContentRenderer } from "@/modules/categories/components";
+import {
+  getContentDefinition,
+  CONTENT_CATEGORIES,
+} from "@/modules/categories/utils";
 
 type PageProps = {
   params: Promise<{

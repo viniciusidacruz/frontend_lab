@@ -4,11 +4,11 @@ import { getPosts } from "@/shared/queries";
 import { BLOG_METADATA, DEFAULT_METADATA } from "@/shared/constants";
 
 import {
-  BlogHeader,
-  FeaturedPosts,
   PostsList,
   SearchBar,
-} from "./components";
+  BlogHeader,
+  FeaturedPosts,
+} from "@/modules/blog/components";
 
 const BLOG_TITLE = "Blog";
 const BLOG_DESCRIPTION =
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function Blog({ searchParams }: BlogPageProps) {
+export default async function Blog({ searchParams }: Readonly<BlogPageProps>) {
   const params = await searchParams;
   const searchValue = params?.search;
   const searchTerm = Array.isArray(searchValue)

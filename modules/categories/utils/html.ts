@@ -3,34 +3,26 @@ import {
   DATALIST_CHARACTERISTICS,
   DATALIST_CODE_HTML,
   DATALIST_CODE_REACT,
-} from "@/shared/constants/datalist";
-import {
   DETAILS_ATTRIBUTES,
   DETAILS_CHARACTERISTICS,
   DETAILS_CODE_HTML,
   DETAILS_CODE_REACT,
-} from "@/shared/constants/details";
-import {
   DIALOG_CHARACTERISTICS,
   DIALOG_CODE_HTML,
   DIALOG_CODE_REACT,
   DIALOG_METHODS,
-} from "@/shared/constants/dialog";
-import {
   PICTURE_CHARACTERISTICS,
   PICTURE_CODE_HTML,
   PICTURE_CODE_REACT,
   PICTURE_ELEMENTS,
-} from "@/shared/constants/picture";
-import {
   TEMPLATE_CHARACTERISTICS,
   TEMPLATE_CODE_HTML,
   TEMPLATE_CODE_REACT,
   TEMPLATE_METHODS,
-} from "@/shared/constants/template";
+} from "@/modules/categories/constants";
 
-import { code, text, toRichText } from "../rich-text";
-import { ContentCategoryConfig } from "../types";
+import { code, text, toRichText } from "./rich-text";
+import { ContentCategoryConfig } from "../types/content";
 
 export const HTML_CATEGORY: ContentCategoryConfig = {
   slug: "html",
@@ -275,8 +267,10 @@ export const HTML_CATEGORY: ContentCategoryConfig = {
           description: [
             text("Use o atributo "),
             code("media"),
-            text(" para servir imagens diferentes baseado no tamanho da viewport: "),
-            code("media=\"(min-width: 768px)\""),
+            text(
+              " para servir imagens diferentes baseado no tamanho da viewport: "
+            ),
+            code('media="(min-width: 768px)"'),
           ],
         },
         {
@@ -285,7 +279,7 @@ export const HTML_CATEGORY: ContentCategoryConfig = {
             text("Use o atributo "),
             code("type"),
             text(" para formatos modernos com fallback: "),
-            code("type=\"image/webp\""),
+            code('type="image/webp"'),
           ],
         },
       ],

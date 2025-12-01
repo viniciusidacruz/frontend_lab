@@ -1,6 +1,11 @@
 import { getPostBySlug } from "@/shared/queries";
 
-import { NotFound, PostContent, PostFooter, PostHeader } from "./components";
+import {
+  NotFound,
+  PostContent,
+  PostFooter,
+  PostHeader,
+} from "@/modules/blog/components";
 
 interface PostDetailPageProps {
   params: Promise<{ slug: string }>;

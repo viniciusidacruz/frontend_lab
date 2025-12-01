@@ -3,9 +3,9 @@
 import { Fragment, useState } from "react";
 
 import { Language } from "@/shared/constants";
-import { CONTENT_DEMOS } from "@/shared/content/demos";
 import { Document, SubHeader } from "@/shared/components";
-import { ContentResource, RichText } from "@/shared/content";
+import { CONTENT_DEMOS } from "@/modules/categories/components";
+import { ContentResource, RichText } from "@/modules/categories/types/content";
 
 interface ContentRendererProps {
   content: ContentResource;

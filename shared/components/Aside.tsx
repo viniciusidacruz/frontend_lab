@@ -6,7 +6,7 @@ import { PanelLeftClose, PanelLeft, NotebookPen, Heart } from "lucide-react";
 
 import { cn } from "@/shared/config";
 import { useToggleAside } from "@/shared/hooks";
-import { MENU_SECTIONS } from "@/shared/constants";
+import { MENU_SECTIONS } from "@/modules/categories/utils";
 
 import { NavLink, ListMenu, AsideLink } from "@/shared/components";
 
