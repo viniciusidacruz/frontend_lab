@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 
 import { Button, Document } from "@/shared/components";
 
@@ -38,7 +38,7 @@ export const TemplateDemo = () => {
   };
 
   return (
-    <>
+    <Fragment>
       <Document.Heading2>Demonstração</Document.Heading2>
 
       <Document.Paragraph>
@@ -66,6 +66,6 @@ export const TemplateDemo = () => {
         <p className="text-zinc-500 text-sm mb-3">Cards criados: {count}</p>
         <div ref={containerRef} className="space-y-3" />
       </div>
-    </>
+    </Fragment>
   );
 };

@@ -6,9 +6,9 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/shared/config";
 
 interface NavLinkProps {
-  href: string;
-  children: React.ReactNode;
-  collapsed?: boolean;
+  readonly href: string;
+  readonly children: React.ReactNode;
+  readonly collapsed?: boolean;
 }
 
 export function NavLink({ href, children, collapsed }: Readonly<NavLinkProps>) {

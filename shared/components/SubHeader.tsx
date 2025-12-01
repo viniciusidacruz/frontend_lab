@@ -2,9 +2,9 @@ import Link from "next/link";
 import { Undo2 } from "lucide-react";
 
 interface SubHeaderProps {
-  title: string;
-  description: string;
-  backLink?: string;
+  readonly title: string;
+  readonly description: string;
+  readonly backLink?: string;
 }
 
 export const SubHeader = ({

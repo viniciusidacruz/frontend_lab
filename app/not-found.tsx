@@ -1,18 +1,12 @@
 import Image from "next/image";
 import { Home, Search, ArrowRight } from "lucide-react";
 
-import { PROJECT } from "@/shared/constants";
+import { PROJECT, QUICK_LINKS } from "@/shared/constants";
 import {
   ErrorNumber,
   ActionButton,
   QuickLinks,
-} from "@/modules/not-found/components";
-
-const QUICK_LINKS = [
-  { href: "/", label: "Início" },
-  { href: "/blog", label: "Blog" },
-  { href: "/donate", label: "Doar" },
-];
+} from "@/shared/components";
 
 export default function NotFound() {
   return (
@@ -26,7 +20,7 @@ export default function NotFound() {
             height={80}
             className="drop-shadow-2xl mx-auto mb-6 opacity-50"
           />
-          <ErrorNumber />
+          <ErrorNumber code="404" />
         </div>
 
         <h2 className="text-3xl md:text-4xl font-bold text-zinc-100 mb-4">

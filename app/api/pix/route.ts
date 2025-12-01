@@ -6,8 +6,8 @@ const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX_REQUESTS = 20;
 
 interface RateLimitEntry {
-  count: number;
-  expiresAt: number;
+  readonly count: number;
+  readonly expiresAt: number;
 }
 
 const rateLimitStore = new Map<string, RateLimitEntry>();
@@ -32,8 +32,12 @@ function isRateLimited(ip: string): boolean {
     return true;
   }
 
-  entry.count += 1;
-  rateLimitStore.set(ip, entry);
+  const updatedEntry: RateLimitEntry = {
+    count: entry.count + 1,
+    expiresAt: entry.expiresAt,
+  };
+
+  rateLimitStore.set(ip, updatedEntry);
   return false;
 }
 

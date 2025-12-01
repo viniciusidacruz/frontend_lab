@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ExternalLink, type LucideIcon } from "lucide-react";
+import { Fragment } from "react";
 
 import { cn } from "@/shared/config";
 
@@ -11,11 +12,11 @@ type IconType =
   | { type: "image"; src: string; alt: string };
 
 interface AsideLinkProps {
-  href: string;
-  label: string;
-  icon: IconType;
-  collapsed?: boolean;
-  isExternal?: boolean;
+  readonly href: string;
+  readonly label: string;
+  readonly icon: IconType;
+  readonly collapsed?: boolean;
+  readonly isExternal?: boolean;
 }
 
 export const AsideLink = ({
@@ -41,10 +42,10 @@ export const AsideLink = ({
     )}
 
     {!collapsed && (
-      <>
+      <Fragment>
         <span>{label}</span>
         {isExternal && <ExternalLink size={12} className="ml-auto" />}
-      </>
+      </Fragment>
     )}
   </Link>
 );

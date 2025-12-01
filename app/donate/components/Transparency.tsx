@@ -1,7 +1,7 @@
 interface TransparencyProps {
-  title: string;
-  description: string;
-  options: readonly string[];
+  readonly title: string;
+  readonly description: string;
+  readonly options: ReadonlyArray<string>;
 }
 
 export const Transparency = ({

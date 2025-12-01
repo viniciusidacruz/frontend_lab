@@ -2,13 +2,13 @@ import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 
 interface Platform {
-  name: string;
-  url: string;
-  description: string;
+  readonly name: string;
+  readonly url: string;
+  readonly description: string;
 }
 
 interface PlatformDonationProps {
-  platforms: readonly Platform[];
+  readonly platforms: ReadonlyArray<Platform>;
 }
 
 export const PlatformDonation = ({

@@ -8,7 +8,7 @@ import { CONTENT_DEMOS } from "@/modules/categories/components";
 import { ContentResource, RichText } from "@/modules/categories/types/content";
 
 interface ContentRendererProps {
-  content: ContentResource;
+  readonly content: ContentResource;
 }
 
 const renderRichText = (content: RichText) =>

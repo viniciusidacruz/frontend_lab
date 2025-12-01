@@ -1,12 +1,8 @@
 import Link from "next/link";
-
-interface QuickLink {
-  href: string;
-  label: string;
-}
+import type { QuickLink } from "@/shared/constants";
 
 interface QuickLinksProps {
-  links: QuickLink[];
+  readonly links: ReadonlyArray<QuickLink>;
 }
 
 export const QuickLinks = ({ links }: QuickLinksProps) => (

@@ -5,7 +5,7 @@ import { cn } from "@/shared/config";
 type ButtonVariant = "primary" | "secondary";
 
 interface ButtonProps extends ComponentProps<"button"> {
-  variant?: ButtonVariant;
+  readonly variant?: ButtonVariant;
 }
 
 const VARIANT_STYLES: Record<ButtonVariant, string> = {

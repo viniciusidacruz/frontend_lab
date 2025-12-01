@@ -3,7 +3,7 @@ import type { Post } from "@/shared/queries";
 import { PostCard } from "./PostCard";
 
 interface FeaturedPostsProps {
-  posts: Post[];
+  readonly posts: ReadonlyArray<Post>;
 }
 
 export const FeaturedPosts = ({ posts }: FeaturedPostsProps) => {

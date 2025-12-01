@@ -1,6 +1,6 @@
 interface ImportantProps {
-  title: string;
-  items: readonly string[];
+  readonly title: string;
+  readonly items: ReadonlyArray<string>;
 }
 
 export const Important = ({ title, items }: ImportantProps) => (

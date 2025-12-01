@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import { Copy, Check, QrCode } from "lucide-react";
+import { Fragment } from "react";
 
 import { cn } from "@/shared/config";
 import { usePixDonation } from "@/shared/hooks";
 
 interface PixDonationProps {
-  label: string;
+  readonly label: string;
 }
 
 export const PixDonation = ({ label }: PixDonationProps) => {
@@ -36,7 +37,7 @@ export const PixDonation = ({ label }: PixDonationProps) => {
     }
 
     return (
-      <>
+      <Fragment>
         <div className="flex flex-col sm:flex-row gap-4 mb-4">
           <div className="flex-1">
             <label
@@ -99,7 +100,7 @@ export const PixDonation = ({ label }: PixDonationProps) => {
             </div>
           </div>
         </div>
-      </>
+      </Fragment>
     );
   };
 

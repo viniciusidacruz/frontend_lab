@@ -7,16 +7,18 @@ import { useCopyToClipboard } from "@/shared/hooks";
 import { Language, ICON_LANGUAGE, LANGUAGE_TITLE } from "@/shared/constants";
 
 interface Props {
-  children: ReactNode;
+  readonly children: ReactNode;
 }
 
 interface PreProps {
-  children: string;
+  readonly children: string;
 }
 
-type IconLanguageProps = ComponentProps<"button"> & {
-  language: Language;
-};
+type IconLanguageProps = Readonly<
+  ComponentProps<"button"> & {
+    language: Language;
+  }
+>;
 
 const Root = ({ children }: Props) => (
   <section className="mt-12">{children}</section>
@@ -67,7 +69,7 @@ const Pre = ({ children }: PreProps) => {
         {isCopied ? "Copiado" : "Copiar"}
       </button>
 
-      <pre>{children}</pre>
+      <pre className="bg-zinc-900">{children}</pre>
     </div>
   );
 };

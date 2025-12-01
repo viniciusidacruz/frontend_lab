@@ -1,26 +1,13 @@
 import Link from "next/link";
 import { Calendar, Clock, Star, ArrowRight } from "lucide-react";
 
+import { estimateReadTime, formatPostDate } from "@/modules/blog/utils/post";
 import { cn } from "@/shared/config";
 import type { Post } from "@/shared/queries";
 
-const formatDate = (dateString: string): string => {
-  return new Intl.DateTimeFormat("pt-BR", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  }).format(new Date(dateString));
-};
-
-const estimateReadTime = (html: string): number => {
-  const text = html.replace(/<[^>]*>/g, "");
-  const words = text.split(/\s+/).length;
-  return Math.max(1, Math.ceil(words / 200));
-};
-
 interface PostCardRootProps {
-  post: Post;
-  children: React.ReactNode;
+  readonly post: Post;
+  readonly children: React.ReactNode;
 }
 
 const Root = ({ post, children }: PostCardRootProps) => {
@@ -47,13 +34,13 @@ const Root = ({ post, children }: PostCardRootProps) => {
 };
 
 interface PostCardHeaderProps {
-  publishedAt: string;
-  readTime: number;
-  featured?: boolean;
+  readonly publishedAt: string;
+  readonly readTime: number;
+  readonly featured?: boolean;
 }
 
 const Header = ({ publishedAt, readTime, featured }: PostCardHeaderProps) => {
-  const formattedDate = formatDate(publishedAt);
+  const formattedDate = formatPostDate(publishedAt);
   const readTimeLabel = `${readTime} min de leitura`;
 
   return (
@@ -84,8 +71,8 @@ const Header = ({ publishedAt, readTime, featured }: PostCardHeaderProps) => {
 };
 
 interface PostCardContentProps {
-  title: string;
-  excerpt?: string | null;
+  readonly title: string;
+  readonly excerpt?: string | null;
 }
 
 const Content = ({ title, excerpt }: PostCardContentProps) => {
@@ -119,7 +106,7 @@ const Footer = () => (
 );
 
 interface PostCardComposedProps {
-  post: Post;
+  readonly post: Post;
 }
 
 const Composed = ({ post }: PostCardComposedProps) => {
@@ -145,7 +132,7 @@ export const PostCard = {
   Footer,
   Composed,
   utils: {
-    formatDate,
+    formatDate: formatPostDate,
     estimateReadTime,
   },
 };

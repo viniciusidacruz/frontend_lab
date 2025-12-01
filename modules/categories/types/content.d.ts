@@ -16,35 +16,35 @@ export type RichTextSegment =
 export type RichText = ReadonlyArray<RichTextSegment>;
 
 export interface ContentInfoItem {
-  title: string;
-  description: RichText;
+  readonly title: string;
+  readonly description: RichText;
 }
 
 export interface ContentInfoSection {
-  title: string;
-  items: ContentInfoItem[];
+  readonly title: string;
+  readonly items: ReadonlyArray<ContentInfoItem>;
 }
 
 export interface ContentResource {
-  slug: ContentComponentSlug;
-  category: ContentCategorySlug;
-  title: string;
-  shortLabel: string;
-  description: string;
-  characteristics: ContentInfoItem[];
-  infoSection: ContentInfoSection;
-  howItWorks: RichText;
-  insights: ContentInfoItem[];
-  code: {
-    html: string;
-    react: string;
+  readonly slug: ContentComponentSlug;
+  readonly category: ContentCategorySlug;
+  readonly title: string;
+  readonly shortLabel: string;
+  readonly description: string;
+  readonly characteristics: ReadonlyArray<ContentInfoItem>;
+  readonly infoSection: ContentInfoSection;
+  readonly howItWorks: RichText;
+  readonly insights: ReadonlyArray<ContentInfoItem>;
+  readonly code: {
+    readonly html: string;
+    readonly react: string;
   };
 }
 
 export interface ContentCategoryConfig {
-  slug: ContentCategorySlug;
-  title: string;
-  items: ContentResource[];
+  readonly slug: ContentCategorySlug;
+  readonly title: string;
+  readonly items: ReadonlyArray<ContentResource>;
 }
 
 export type ContentDemoMap = Record<ContentComponentSlug, ComponentType>;

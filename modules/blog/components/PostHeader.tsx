@@ -1,25 +1,13 @@
 import Link from "next/link";
 import { Calendar, Clock, Star, ArrowLeft } from "lucide-react";
 
-const formatDate = (dateString: string): string => {
-  return new Intl.DateTimeFormat("pt-BR", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  }).format(new Date(dateString));
-};
-
-const estimateReadTime = (html: string): number => {
-  const text = html.replace(/<[^>]*>/g, "");
-  const words = text.split(/\s+/).length;
-  return Math.max(1, Math.ceil(words / 200));
-};
+import { estimateReadTime, formatPostDate } from "@/modules/blog/utils/post";
 
 interface PostHeaderProps {
-  title: string;
-  publishedAt: string;
-  contentHtml: string;
-  featured: boolean;
+  readonly title: string;
+  readonly publishedAt: string;
+  readonly contentHtml: string;
+  readonly featured: boolean;
 }
 
 export const PostHeader = ({
@@ -28,7 +16,7 @@ export const PostHeader = ({
   contentHtml,
   featured,
 }: PostHeaderProps) => {
-  const formattedDate = formatDate(publishedAt);
+  const formattedDate = formatPostDate(publishedAt, "long");
   const readTime = estimateReadTime(contentHtml);
   const readTimeLabel = `${readTime} min de leitura`;
 

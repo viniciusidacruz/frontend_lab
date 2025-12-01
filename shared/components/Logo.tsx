@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 interface LogoProps {
-  collapsed?: boolean;
+  readonly collapsed?: boolean;
 }
 
 export const Logo = ({ collapsed = false }: LogoProps) => {

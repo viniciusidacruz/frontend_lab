@@ -1,6 +1,6 @@
 interface BlogHeaderProps {
-  title: string;
-  description: string;
+  readonly title: string;
+  readonly description: string;
 }
 
 export const BlogHeader = ({ title, description }: BlogHeaderProps) => (

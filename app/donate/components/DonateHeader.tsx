@@ -1,9 +1,9 @@
 import { Heart } from "lucide-react";
 
 interface DonateHeaderProps {
-  title: string;
-  subtitle: string;
-  ctaButton: string;
+  readonly title: string;
+  readonly subtitle: string;
+  readonly ctaButton: string;
 }
 
 export const DonateHeader = ({

@@ -36,13 +36,13 @@ export const DIALOG_METHODS = [
   },
 ];
 
-export const DIALOG_CODE_REACT = `import { useRef } from "react";
+export const DIALOG_CODE_REACT = `import { Fragment, useRef } from "react";
 
 export default function DialogExample() {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   return (
-    <>
+    <Fragment>
       <button onClick={() => dialogRef.current?.showModal()}>
         Abrir Dialog
       </button>
@@ -60,7 +60,7 @@ export default function DialogExample() {
           </button>
         </div>
       </dialog>
-    </>
+    </Fragment>
   );
 }`;
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 
 import { Button, Document } from "@/shared/components";
 
@@ -12,7 +12,7 @@ export const DialogDemo = () => {
   const confirmDialog = () => dialogRef.current?.close("confirmed");
 
   return (
-    <>
+    <Fragment>
       <Document.Heading2>Demonstração</Document.Heading2>
 
       <Document.Paragraph>
@@ -49,6 +49,6 @@ export const DialogDemo = () => {
           </div>
         </div>
       </dialog>
-    </>
+    </Fragment>
   );
 };

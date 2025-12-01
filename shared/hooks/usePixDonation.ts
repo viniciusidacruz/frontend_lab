@@ -3,8 +3,8 @@ import { useMemo } from "react";
 import { useCopyToClipboard } from "./useCopyToClipboard";
 
 interface PixResponse {
-  payload?: string;
-  error?: string;
+  readonly payload?: string;
+  readonly error?: string;
 }
 
 async function fetchPixPayload(): Promise<string> {

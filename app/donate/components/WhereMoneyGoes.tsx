@@ -1,8 +1,8 @@
 interface WhereMoneyGoesProps {
-  title: string;
-  description: string;
-  items: readonly string[];
-  transparencyNote: string;
+  readonly title: string;
+  readonly description: string;
+  readonly items: ReadonlyArray<string>;
+  readonly transparencyNote: string;
 }
 
 export const WhereMoneyGoes = ({

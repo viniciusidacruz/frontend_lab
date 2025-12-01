@@ -1,12 +1,12 @@
 import { computeCrc16Ccitt } from "./crc16";
 
 interface PixPayloadInput {
-  key: string;
-  name: string;
-  city: string;
-  amount: number;
-  txid?: string;
-  description?: string;
+  readonly key: string;
+  readonly name: string;
+  readonly city: string;
+  readonly amount: number;
+  readonly txid?: string;
+  readonly description?: string;
 }
 
 const PAYLOAD_FORMAT_INDICATOR = "01";

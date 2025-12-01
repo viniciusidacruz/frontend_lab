@@ -2,19 +2,19 @@ import { PixDonation } from "./PixDonation";
 import { PlatformDonation } from "./PlatformDonation";
 
 interface Platform {
-  name: string;
-  url: string;
-  description: string;
+  readonly name: string;
+  readonly url: string;
+  readonly description: string;
 }
 
 interface HowToDonateProps {
-  title: string;
-  description: string;
-  pix: {
-    label: string;
+  readonly title: string;
+  readonly description: string;
+  readonly pix: {
+    readonly label: string;
   };
-  platforms: readonly Platform[];
-  note: string;
+  readonly platforms: ReadonlyArray<Platform>;
+  readonly note: string;
 }
 
 export const HowToDonate = ({

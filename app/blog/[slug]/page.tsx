@@ -8,7 +8,7 @@ import {
 } from "@/modules/blog/components";
 
 interface PostDetailPageProps {
-  params: Promise<{ slug: string }>;
+  readonly params: Promise<{ readonly slug: string }>;
 }
 
 export default async function PostDetailPage({

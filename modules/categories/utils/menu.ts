@@ -1,18 +1,18 @@
 import { CONTENT_CATEGORIES } from "./content";
 
 export interface MenuItem {
-  label: string;
-  shortLabel: string;
-  href: string;
-  tag?: string;
+  readonly label: string;
+  readonly shortLabel: string;
+  readonly href: string;
+  readonly tag?: string;
 }
 
 export interface MenuSection {
-  title: string;
-  items: MenuItem[];
+  readonly title: string;
+  readonly items: ReadonlyArray<MenuItem>;
 }
 
-export const MENU_SECTIONS: MenuSection[] = CONTENT_CATEGORIES.map(
+export const MENU_SECTIONS: ReadonlyArray<MenuSection> = CONTENT_CATEGORIES.map(
   (category) => ({
     title: category.title,
     items: category.items.map((item) => ({

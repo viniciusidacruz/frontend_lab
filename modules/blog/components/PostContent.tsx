@@ -1,5 +1,5 @@
 interface PostContentProps {
-  html: string;
+  readonly html: string;
 }
 
 export const PostContent = ({ html }: PostContentProps) => (

@@ -1,6 +1,6 @@
 interface WhyDonateProps {
-  title: string;
-  paragraphs: readonly string[];
+  readonly title: string;
+  readonly paragraphs: ReadonlyArray<string>;
 }
 
 export const WhyDonate = ({ title, paragraphs }: WhyDonateProps) => (

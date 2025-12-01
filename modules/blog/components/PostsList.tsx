@@ -4,8 +4,8 @@ import { PostCard } from "./PostCard";
 import { EmptyState } from "./EmptyState";
 
 interface PostsListProps {
-  posts: Post[];
-  totalCount: number;
+  readonly posts: ReadonlyArray<Post>;
+  readonly totalCount: number;
 }
 
 export const PostsList = ({ posts, totalCount }: PostsListProps) => {

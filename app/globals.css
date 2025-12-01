@@ -30,6 +30,18 @@
 }
 
 @layer components {
+  .btn-base {
+    @apply group flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all;
+  }
+
+  .btn-primary {
+    @apply bg-linear-to-r from-blue-600 to-violet-600 hover:from-blue-500 hover:to-violet-500 text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 hover:scale-105;
+  }
+
+  .btn-secondary {
+    @apply bg-zinc-800 hover:bg-zinc-700 text-zinc-300 border border-zinc-700 hover:border-zinc-600;
+  }
+
   .prose-custom {
     @apply text-zinc-300 leading-relaxed;
     word-wrap: break-word;

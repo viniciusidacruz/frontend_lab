@@ -1,11 +1,11 @@
 interface FAQItem {
-  question: string;
-  answer: string;
+  readonly question: string;
+  readonly answer: string;
 }
 
 interface FAQProps {
-  title: string;
-  items: readonly FAQItem[];
+  readonly title: string;
+  readonly items: ReadonlyArray<FAQItem>;
 }
 
 export const DonateFAQ = ({ title, items }: FAQProps) => (

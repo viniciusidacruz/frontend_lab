@@ -55,8 +55,8 @@ const STATUS_LABEL: Record<StatusTopic, string> = {
 };
 
 interface ContentCardRootProps {
-  topic: ContentTopic;
-  children: React.ReactNode;
+  readonly topic: ContentTopic;
+  readonly children: React.ReactNode;
 }
 
 const Root = ({ topic, children }: ContentCardRootProps) => {
@@ -91,8 +91,8 @@ const Root = ({ topic, children }: ContentCardRootProps) => {
 };
 
 interface ContentCardTagsProps {
-  tags: string[];
-  variant: VariantTopic;
+  readonly tags: ReadonlyArray<string>;
+  readonly variant: VariantTopic;
 }
 
 const Tags = ({ tags, variant }: ContentCardTagsProps) => {

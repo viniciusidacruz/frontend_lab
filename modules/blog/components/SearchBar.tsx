@@ -1,7 +1,7 @@
 import { Search } from "lucide-react";
 
 interface SearchBarProps {
-  defaultValue?: string;
+  readonly defaultValue?: string;
 }
 
 export const SearchBar = ({ defaultValue }: SearchBarProps) => (
