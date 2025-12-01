@@ -22,7 +22,7 @@ type PostQueryData = {
 
 const POSTS_QUERY = `
   query GetPosts {
-    posts(orderBy: publishedAt_ASC, stage: PUBLISHED) {
+    posts(orderBy: publishedAt_DESC, stage: PUBLISHED) {
       id
       publishedAt
       title

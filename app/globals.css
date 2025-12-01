@@ -34,54 +34,92 @@
     @apply text-zinc-300 leading-relaxed;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
-  .prose-custom * {
+  .prose-custom *,
+  .prose-custom *::before,
+  .prose-custom *::after {
+    box-sizing: border-box;
     max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .prose-custom > * {
+    min-width: 0;
   }
 
   .prose-custom h1 {
     @apply text-2xl sm:text-3xl font-bold text-zinc-100 mt-8 sm:mt-10 mb-4;
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   .prose-custom h2 {
     @apply text-xl sm:text-2xl font-bold text-zinc-100 mt-8 sm:mt-10 mb-4;
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   .prose-custom h3 {
     @apply text-lg sm:text-xl font-semibold text-zinc-100 mt-6 sm:mt-8 mb-3;
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   .prose-custom h4 {
     @apply text-base sm:text-lg font-semibold text-zinc-200 mt-4 sm:mt-6 mb-2;
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   .prose-custom p {
     @apply mb-4 text-zinc-400;
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
 
   .prose-custom a {
     @apply text-blue-400 hover:text-blue-300 underline underline-offset-2 transition-colors;
+    word-break: break-all;
+    overflow-wrap: break-word;
   }
 
   .prose-custom strong {
     @apply font-semibold text-zinc-200;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 
   .prose-custom em {
     @apply italic text-zinc-300;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 
   .prose-custom ul {
     @apply list-disc ml-4 sm:ml-6 mb-4 space-y-2 text-zinc-400;
+    min-width: 0;
   }
 
   .prose-custom ol {
     @apply list-decimal ml-4 sm:ml-6 mb-4 space-y-2 text-zinc-400;
+    min-width: 0;
   }
 
   .prose-custom li {
     @apply pl-2 text-zinc-400;
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
 
   .prose-custom li p {
@@ -97,24 +135,36 @@
 
   .prose-custom blockquote {
     @apply border-l-4 border-blue-500/50 pl-4 py-2 my-6 bg-zinc-900/50 rounded-r-lg italic text-zinc-400;
+    min-width: 0;
+    overflow-wrap: break-word;
   }
 
   .prose-custom code {
-    @apply bg-zinc-800 text-violet-400 px-1.5 py-0.5 rounded text-sm font-mono break-words;
-  }
-
-  .prose-custom pre code {
-    @apply break-normal;
+    @apply bg-zinc-800 text-violet-400 px-1.5 py-0.5 rounded text-sm font-mono;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
   }
 
   .prose-custom pre {
-    @apply bg-zinc-900 border border-zinc-800 rounded-xl p-3 sm:p-4 overflow-x-auto mb-6 max-w-full;
+    @apply bg-zinc-900 border border-zinc-800 rounded-xl p-3 sm:p-4 mb-6;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    box-sizing: border-box;
   }
 
   .prose-custom pre code {
-    @apply bg-transparent p-0 text-zinc-300 whitespace-pre;
+    @apply bg-transparent p-0 text-zinc-300;
+    display: block;
+    width: 100%;
+    max-width: 100%;
     word-break: normal;
     overflow-wrap: normal;
+    white-space: pre;
+    box-sizing: border-box;
   }
 
   .prose-custom hr {
@@ -122,20 +172,33 @@
   }
 
   .prose-custom img {
-    @apply rounded-xl my-4 sm:my-6 w-full h-auto;
+    @apply rounded-xl my-4 sm:my-6 h-auto;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
   }
 
   .prose-custom table {
-    @apply w-full border-collapse mb-6;
+    @apply border-collapse mb-6;
+    width: 100%;
+    max-width: 100%;
     display: block;
     overflow-x: auto;
-    max-width: 100%;
+    min-width: 0;
   }
 
   .prose-custom table thead,
   .prose-custom table tbody {
     display: table;
     width: 100%;
+    min-width: 0;
+  }
+
+  .prose-custom table th,
+  .prose-custom table td {
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 
   .prose-custom th {

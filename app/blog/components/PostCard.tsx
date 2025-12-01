@@ -29,9 +29,10 @@ const Root = ({ post, children }: PostCardRootProps) => {
   return (
     <article
       className={cn(
-        "group relative rounded-xl border p-6 transition-all duration-300",
+        "group relative rounded-xl border p-4 sm:p-6 transition-all duration-300",
         "bg-zinc-900/50 border-zinc-800/50",
         "hover:bg-zinc-900 hover:border-zinc-700/50 hover:shadow-lg hover:shadow-blue-500/5",
+        "w-full min-w-0",
         isFeatured && "border-l-2 border-l-amber-500"
       )}
     >
@@ -56,20 +57,24 @@ const Header = ({ publishedAt, readTime, featured }: PostCardHeaderProps) => {
   const readTimeLabel = `${readTime} min de leitura`;
 
   return (
-    <header className="flex items-center justify-between gap-3 mb-4">
-      <div className="flex items-center gap-3 text-xs text-zinc-500">
-        <time dateTime={publishedAt} className="flex items-center gap-1.5">
+    <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3 mb-3 sm:mb-4">
+      <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs text-zinc-500">
+        <time
+          dateTime={publishedAt}
+          className="flex items-center gap-1.5 whitespace-nowrap"
+        >
           <Calendar size={12} />
-          {formattedDate}
+          <span className="hidden sm:inline">{formattedDate}</span>
+          <span className="sm:hidden">{formattedDate}</span>
         </time>
-        <span className="flex items-center gap-1.5">
+        <span className="flex items-center gap-1.5 whitespace-nowrap">
           <Clock size={12} />
           {readTimeLabel}
         </span>
       </div>
 
       {featured && (
-        <span className="flex items-center gap-1 text-[10px] font-medium px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400">
+        <span className="flex items-center gap-1 text-[10px] font-medium px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400 self-start sm:self-auto">
           <Star size={10} className="fill-current" />
           Destaque
         </span>
@@ -87,13 +92,13 @@ const Content = ({ title, excerpt }: PostCardContentProps) => {
   const hasExcerpt = Boolean(excerpt);
 
   return (
-    <div className="space-y-3">
-      <h2 className="text-lg font-semibold text-zinc-100 group-hover:text-blue-400 transition-colors line-clamp-2">
+    <div className="space-y-2 sm:space-y-3 min-w-0">
+      <h2 className="text-base sm:text-lg font-semibold text-zinc-100 group-hover:text-blue-400 transition-colors line-clamp-2 wrap-break-word">
         {title}
       </h2>
 
       {hasExcerpt && (
-        <p className="text-sm text-zinc-500 line-clamp-3 leading-relaxed">
+        <p className="text-xs sm:text-sm text-zinc-500 line-clamp-3 leading-relaxed wrap-break-word">
           {excerpt}
         </p>
       )}
@@ -102,12 +107,12 @@ const Content = ({ title, excerpt }: PostCardContentProps) => {
 };
 
 const Footer = () => (
-  <footer className="mt-5 pt-4 border-t border-zinc-800/50">
-    <span className="inline-flex items-center gap-1.5 text-sm font-medium text-blue-400 group-hover:gap-2.5 transition-all">
+  <footer className="mt-4 sm:mt-5 pt-3 sm:pt-4 border-t border-zinc-800/50">
+    <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-blue-400 group-hover:gap-2.5 transition-all">
       Ler artigo
       <ArrowRight
         size={14}
-        className="transition-transform group-hover:translate-x-1"
+        className="transition-transform group-hover:translate-x-1 shrink-0"
       />
     </span>
   </footer>
@@ -144,4 +149,3 @@ export const PostCard = {
     estimateReadTime,
   },
 };
-
