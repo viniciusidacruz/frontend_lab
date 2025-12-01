@@ -1,3 +1,5 @@
+import { CONTENT_CATEGORIES } from "@/shared/content";
+
 export interface MenuItem {
   label: string;
   shortLabel: string;
@@ -10,15 +12,13 @@ export interface MenuSection {
   items: MenuItem[];
 }
 
-export const MENU_SECTIONS: MenuSection[] = [
-  {
-    title: "HTML",
-    items: [
-      { label: "Dialog", shortLabel: "Di", href: "/dialog" },
-      { label: "Details", shortLabel: "De", href: "/details" },
-      { label: "Datalist", shortLabel: "Da", href: "/datalist" },
-      { label: "Template", shortLabel: "Te", href: "/template" },
-      { label: "Picture", shortLabel: "Pi", href: "/picture" },
-    ],
-  },
-];
+export const MENU_SECTIONS: MenuSection[] = CONTENT_CATEGORIES.map(
+  (category) => ({
+    title: category.title,
+    items: category.items.map((item) => ({
+      label: item.title,
+      shortLabel: item.shortLabel,
+      href: `/${item.category}/${item.slug}`,
+    })),
+  })
+);
