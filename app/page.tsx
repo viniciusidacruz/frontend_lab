@@ -8,6 +8,7 @@ import { getContentTopics } from "@/shared/queries";
 
 export default async function Home() {
   const topics = await getContentTopics();
+
   return (
     <div className="max-w-5xl mx-auto px-8 py-12">
       <header className="text-center mb-16">
