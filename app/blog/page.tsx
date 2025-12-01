@@ -19,7 +19,7 @@ type BlogPageSearchParams = {
 };
 
 type BlogPageProps = {
-  searchParams?: BlogPageSearchParams;
+  searchParams?: Promise<BlogPageSearchParams>;
 };
 
 export const metadata: Metadata = {
@@ -40,7 +40,8 @@ export const metadata: Metadata = {
 };
 
 export default async function Blog({ searchParams }: BlogPageProps) {
-  const searchValue = searchParams?.search;
+  const params = await searchParams;
+  const searchValue = params?.search;
   const searchTerm = Array.isArray(searchValue)
     ? searchValue[0]?.trim()
     : searchValue?.trim();
