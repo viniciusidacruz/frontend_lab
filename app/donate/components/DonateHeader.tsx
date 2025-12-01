@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Heart } from "lucide-react";
 
 interface DonateHeaderProps {
@@ -33,4 +32,3 @@ export const DonateHeader = ({
     </a>
   </header>
 );
-

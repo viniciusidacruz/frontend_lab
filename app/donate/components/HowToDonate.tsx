@@ -12,8 +12,6 @@ interface HowToDonateProps {
   description: string;
   pix: {
     label: string;
-    key: string;
-    qrCodePlaceholder: string;
   };
   platforms: readonly Platform[];
   note: string;
@@ -34,11 +32,7 @@ export const HowToDonate = ({
     <p className="text-zinc-400 mb-8 text-base sm:text-lg">{description}</p>
 
     <div className="space-y-8">
-      <PixDonation
-        label={pix.label}
-        key={pix.key}
-        qrCodePlaceholder={pix.qrCodePlaceholder}
-      />
+      <PixDonation label={pix.label} />
 
       {platforms.length > 0 && (
         <div>
@@ -55,4 +49,3 @@ export const HowToDonate = ({
     </p>
   </section>
 );
-

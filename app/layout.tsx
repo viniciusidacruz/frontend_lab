@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 
 import { Aside } from "@/shared/components";
+import { Providers } from "@/shared/providers";
 
 import "./globals.css";
 
@@ -35,9 +36,11 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={`${poppins.variable} antialiased flex min-h-screen`}>
-        <Aside />
+        <Providers>
+          <Aside />
 
-        <main className="flex-1 p-8">{children}</main>
+          <main className="flex-1 p-8">{children}</main>
+        </Providers>
       </body>
     </html>
   );

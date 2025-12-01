@@ -31,8 +31,6 @@ export const DONATE_CONTENT = {
       "Se este projeto já te ajudou de alguma forma e você quiser apoiar, aqui vão algumas opções:",
     pix: {
       label: "Pix",
-      key: "00020126360014BR.GOV.BCB.PIX0114+5511999999999020400005303986540510.005802BR5925VINICIUS DA CRUZ SILVA6009SAO PAULO62070503***6304ABCD",
-      qrCodePlaceholder: "/assets/qr-code-placeholder.png",
     },
     platforms: [],
     note: "Qualquer valor faz diferença. De verdade.",
@@ -72,4 +70,3 @@ export const DONATE_CONTENT = {
     ],
   },
 } as const;
-
