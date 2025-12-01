@@ -8,10 +8,6 @@ import {
   FeaturedPosts,
 } from "@/modules/blog/components";
 
-const BLOG_TITLE = "Blog";
-const BLOG_DESCRIPTION =
-  "Artigos sobre desenvolvimento frontend, boas práticas e muito mais.";
-
 type BlogPageSearchParams = {
   search?: string | string[];
 };
@@ -41,7 +37,7 @@ export default async function Blog({ searchParams }: Readonly<BlogPageProps>) {
 
   return (
     <div className="max-w-5xl mx-auto px-2 py-4 sm:px-8 sm:py-12">
-      <BlogHeader title={BLOG_TITLE} description={BLOG_DESCRIPTION} />
+      <BlogHeader title="Blog" description={BLOG_METADATA.description} />
 
       <div className="mb-10 flex w-full justify-center">
         <SearchBar defaultValue={searchTerm} />

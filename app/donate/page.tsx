@@ -1,9 +1,7 @@
-import type { Metadata } from "next";
-
 import {
   DONATE_CONTENT,
   DONATE_METADATA,
-  DEFAULT_METADATA,
+  createMetadata,
 } from "@/shared/constants";
 
 import {
