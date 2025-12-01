@@ -297,13 +297,15 @@ O projeto utiliza **Semantic Versioning (SemVer)** no formato `MAJOR.MINOR.PATCH
 **Processo obrigatório antes de cada deploy:**
 
 1. Atualizar a versão em `package.json`:
+
    ```json
    {
-     "version": "1.0.0"  // Incrementar conforme necessário
+     "version": "1.0.0" // Incrementar conforme necessário
    }
    ```
 
 2. Commitar a mudança de versão junto com as alterações:
+
    ```bash
    git add package.json
    git commit -m "chore: bump version to 1.0.0"
