@@ -47,5 +47,9 @@ export default async function Page({ params }: Readonly<PageProps>) {
     notFound();
   }
 
-  return <ContentRenderer content={content} />;
+  return (
+    <div className="max-w-5xl mx-auto px-8 py-12">
+      <ContentRenderer content={content} />
+    </div>
+  );
 }
