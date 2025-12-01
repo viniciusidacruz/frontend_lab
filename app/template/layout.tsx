@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { Header } from "@/shared/components";
+import { SubHeader } from "@/shared/components";
 
 export const metadata: Metadata = {
   title: "Template | Frontend Lab",
@@ -15,7 +15,7 @@ export default function TemplateLayout({
 }>) {
   return (
     <div>
-      <Header
+      <SubHeader
         title="Template"
         description="O elemento <template> define fragmentos de HTML que não são renderizados até serem clonados via JavaScript."
       />

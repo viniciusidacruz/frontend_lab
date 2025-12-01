@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { Header } from "@/shared/components";
+import { SubHeader } from "@/shared/components";
 
 export const metadata: Metadata = {
   title: "Datalist | Frontend Lab",
@@ -14,7 +14,7 @@ export default function DatalistLayout({
 }>) {
   return (
     <div>
-      <Header
+      <SubHeader
         title="Datalist"
         description="O elemento <datalist> fornece sugestões de autocomplete para inputs sem necessidade de JavaScript."
       />

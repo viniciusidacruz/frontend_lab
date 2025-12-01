@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { Header } from "@/shared/components";
+import { SubHeader } from "@/shared/components";
 
 export const metadata: Metadata = {
   title: "Picture | Frontend Lab",
@@ -15,7 +15,7 @@ export default function PictureLayout({
 }>) {
   return (
     <div>
-      <Header
+      <SubHeader
         title="Picture"
         description="O elemento <picture> permite servir imagens diferentes baseado em media queries, formato e resolução."
       />

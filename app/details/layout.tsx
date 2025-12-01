@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { Header } from "@/shared/components";
+import { SubHeader } from "@/shared/components";
 
 export const metadata: Metadata = {
   title: "Details | Frontend Lab",
@@ -14,7 +14,7 @@ export default function DetailsLayout({
 }>) {
   return (
     <div>
-      <Header
+      <SubHeader
         title="Details"
         description="O elemento <details> cria accordions e seções expansíveis sem necessidade de JavaScript."
       />

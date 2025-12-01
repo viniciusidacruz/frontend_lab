@@ -1,17 +1,17 @@
 import Link from "next/link";
 import { Undo2 } from "lucide-react";
 
-interface HeaderProps {
+interface SubHeaderProps {
   title: string;
   description: string;
   backLink?: string;
 }
 
-export const Header = ({
+export const SubHeader = ({
   title,
   description,
   backLink,
-}: Readonly<HeaderProps>) => (
+}: Readonly<SubHeaderProps>) => (
   <header>
     {backLink && (
       <Link href={backLink}>
