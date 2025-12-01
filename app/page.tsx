@@ -3,9 +3,11 @@ import Image from "next/image";
 import { ExternalLink, User } from "lucide-react";
 
 import { ContentCard } from "@/shared/components";
-import { CONTENT_CATEGORIES, AUTHOR, PROJECT } from "@/shared/constants";
+import { AUTHOR, PROJECT } from "@/shared/constants";
+import { getContentTopics } from "@/shared/queries";
 
-export default function Home() {
+export default async function Home() {
+  const topics = await getContentTopics();
   return (
     <div className="max-w-5xl mx-auto px-8 py-12">
       <header className="text-center mb-16">
@@ -74,11 +76,11 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {CONTENT_CATEGORIES.map((category) => (
-            <ContentCard.Root key={category.title} category={category}>
-              <ContentCard.Items
-                items={category.items}
-                color={category.color}
+          {topics.map((topic) => (
+            <ContentCard.Root key={topic.id} topic={topic}>
+              <ContentCard.Tags
+                tags={topic.tags}
+                variant={topic.variantsTopic}
               />
             </ContentCard.Root>
           ))}

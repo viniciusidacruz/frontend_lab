@@ -1,10 +1,7 @@
 import { cn } from "@/shared/config";
-import type { ContentCategory, CategoryItem } from "@/shared/constants/home";
+import type { ContentTopic, StatusTopic, VariantTopic } from "@/shared/queries";
 
-const COLOR_VARIANTS: Record<
-  string,
-  { border: string; bg: string; text: string; badge: string }
-> = {
+const COLOR_VARIANTS = {
   orange: {
     border: "border-orange-500/30",
     bg: "bg-orange-500/5",
@@ -41,15 +38,30 @@ const COLOR_VARIANTS: Record<
     text: "text-rose-400",
     badge: "bg-rose-500/20 text-rose-400",
   },
+} as const;
+
+const VARIANT_COLOR_MAP: Record<VariantTopic, keyof typeof COLOR_VARIANTS> = {
+  HTML_ADVANCED: "orange",
+  JS_APIS: "yellow",
+  FRONTEND_ARCH: "cyan",
+  DESIGN_PATTERNS: "violet",
+  SOLID: "emerald",
+  CLEAN_CODE: "rose",
+};
+
+const STATUS_LABEL: Record<StatusTopic, string> = {
+  AVAILABLE: "Disponível",
+  COMING_SOON: "Em breve",
 };
 
 interface ContentCardRootProps {
-  category: ContentCategory;
+  topic: ContentTopic;
   children: React.ReactNode;
 }
 
-const Root = ({ category, children }: ContentCardRootProps) => {
-  const colors = COLOR_VARIANTS[category.color] || COLOR_VARIANTS.cyan;
+const Root = ({ topic, children }: ContentCardRootProps) => {
+  const colorKey = VARIANT_COLOR_MAP[topic.variantsTopic] ?? "cyan";
+  const colors = COLOR_VARIANTS[colorKey];
 
   return (
     <div
@@ -60,43 +72,44 @@ const Root = ({ category, children }: ContentCardRootProps) => {
       )}
     >
       <div className="flex items-start justify-between gap-3 mb-3">
-        <h3 className={cn("font-semibold", colors.text)}>{category.title}</h3>
+        <h3 className={cn("font-semibold", colors.text)}>{topic.title}</h3>
         <span
           className={cn(
             "text-[10px] font-medium px-2 py-0.5 rounded-full whitespace-nowrap",
-            category.status === "available"
+            topic.statusTopic === "AVAILABLE"
               ? "bg-emerald-500/20 text-emerald-400"
               : "bg-zinc-700 text-zinc-400"
           )}
         >
-          {category.status === "available" ? "Disponível" : "Em breve"}
+          {STATUS_LABEL[topic.statusTopic]}
         </span>
       </div>
-      <p className="text-zinc-500 text-sm mb-4">{category.description}</p>
+      <p className="text-zinc-500 text-sm mb-4">{topic.description}</p>
       {children}
     </div>
   );
 };
 
-interface ContentCardItemsProps {
-  items: CategoryItem[];
-  color: string;
+interface ContentCardTagsProps {
+  tags: string[];
+  variant: VariantTopic;
 }
 
-const Items = ({ items, color }: ContentCardItemsProps) => {
-  const colors = COLOR_VARIANTS[color] || COLOR_VARIANTS.cyan;
+const Tags = ({ tags, variant }: ContentCardTagsProps) => {
+  const colorKey = VARIANT_COLOR_MAP[variant] ?? "cyan";
+  const colors = COLOR_VARIANTS[colorKey];
 
   return (
     <div className="flex flex-wrap gap-2">
-      {items.map((item) => (
+      {tags.map((tag) => (
         <span
-          key={item.label}
+          key={tag}
           className={cn(
             "text-xs px-2 py-1 rounded-md font-medium",
             colors.badge
           )}
         >
-          {item.emoji} {item.label}
+          {tag}
         </span>
       ))}
     </div>
@@ -105,5 +118,5 @@ const Items = ({ items, color }: ContentCardItemsProps) => {
 
 export const ContentCard = {
   Root,
-  Items,
+  Tags,
 };

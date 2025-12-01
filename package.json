@@ -2,15 +2,16 @@
   "name": "html-advanced-usage",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "yarn@1.22.19",
+  "packageManager": "npm@10.9.2",
   "engines": {
     "node": ">=22.14.0",
-    "yarn": ">=1.22.19",
-    "npm": "please-use-yarn",
-    "pnpm": "please-use-yarn"
+    "npm": ">=10.9.2",
+    "pnpm": "please-use-npm",
+    "yarn": "please-use-npm",
+    "bun": "please-use-npm"
   },
   "scripts": {
-    "preinstall": "npx only-allow yarn",
+    "preinstall": "npx only-allow npm",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

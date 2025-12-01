@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@layer utilities {
+  .animate-reverse {
+    animation-direction: reverse;
+  }
+}
+
 @layer base {
   button {
     @apply cursor-pointer;
