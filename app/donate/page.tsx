@@ -16,17 +16,11 @@ import {
   WhyDonate,
 } from "./components";
 
-export const metadata: Metadata = {
+export const metadata = createMetadata({
   title: DONATE_METADATA.title,
   description: DONATE_METADATA.description,
-  openGraph: {
-    title: DONATE_METADATA.title,
-    description: DONATE_METADATA.description,
-    url: DONATE_METADATA.url,
-    siteName: DEFAULT_METADATA.siteName,
-    type: "website",
-  },
-};
+  url: DONATE_METADATA.url,
+});
 
 export default function Donate() {
   return (

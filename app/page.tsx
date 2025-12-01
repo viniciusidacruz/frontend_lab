@@ -3,8 +3,19 @@ import Image from "next/image";
 import { ExternalLink, User } from "lucide-react";
 
 import { ContentCard } from "@/shared/components";
-import { AUTHOR, PROJECT } from "@/shared/constants";
+import {
+  AUTHOR,
+  PROJECT,
+  DEFAULT_METADATA,
+  createMetadata,
+} from "@/shared/constants";
 import { getContentTopics } from "@/shared/queries";
+
+export const metadata = createMetadata({
+  title: DEFAULT_METADATA.title,
+  description: DEFAULT_METADATA.description,
+  url: DEFAULT_METADATA.url,
+});
 
 export default async function Home() {
   const topics = await getContentTopics();

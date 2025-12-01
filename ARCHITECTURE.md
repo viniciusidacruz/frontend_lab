@@ -94,6 +94,22 @@ A pasta `shared/` contém tudo que é **reutilizável entre múltiplos módulos*
 - **`queries/`**: Funções de fetch de dados compartilhadas
 - **`config/`**: Configurações e utilitários (ex: `cn()` para classes CSS)
 
+### 4. Eliminação de Hardcode e Números Mágicos
+
+**Princípio fundamental**: **Nunca use valores hardcoded ou números mágicos no código**. Sempre extraia para constants, enums ou configurações.
+
+**Regras obrigatórias:**
+
+- ✅ **Sempre use enums** para valores discretos (status, tipos, variantes)
+- ✅ **Sempre use constants** para números, strings fixas, URLs e paths
+- ✅ **Sempre centralize** mensagens de erro e validações
+- ✅ **Sempre documente** regras de negócio em constants ou validators
+- ❌ **Nunca** use números mágicos diretamente no código
+- ❌ **Nunca** use strings hardcoded sem constant
+- ❌ **Nunca** use valores de configuração inline
+
+Veja a seção [Eliminação de Hardcode e Números Mágicos](#eliminação-de-hardcode-e-números-mágicos) para exemplos detalhados.
+
 ## 🌐 Rotas e Funcionalidades
 
 ### Rotas Principais
@@ -152,9 +168,11 @@ PIX_DEFAULT_AMOUNT="20.00"
 
 A rota `/api/pix` implementa rate limiting simples em memória:
 
-- **Janela**: 60 segundos
-- **Limite**: 20 requisições por IP
-- **Resposta**: 429 (Too Many Requests) quando excedido
+- **Janela**: 60 segundos (deve estar em constant)
+- **Limite**: 20 requisições por IP (deve estar em constant)
+- **Resposta**: 429 (Too Many Requests) quando excedido (deve usar HTTP_STATUS constant)
+
+⚠️ **Nota**: Esses valores devem ser extraídos para constants seguindo o padrão de eliminação de números mágicos.
 
 ## 🎨 Padrões de Código
 
@@ -206,6 +224,7 @@ import { PostCard } from "@/modules/blog/components";
 - **Utils**: camelCase (`formatDate.ts`)
 - **Constants**: UPPER_SNAKE_CASE ou objetos (`DONATE_CONTENT`)
 - **Types**: PascalCase (`PixPayloadInput`)
+- **Enums**: PascalCase (`Language`, `StatusTopic`)
 
 ### Exports
 
@@ -217,6 +236,236 @@ import { PostCard } from "@/modules/blog/components";
 export * from "./PostCard";
 export * from "./PostHeader";
 ```
+
+### Eliminação de Hardcode e Números Mágicos
+
+⚠️ **Princípio fundamental**: **Nunca use valores hardcoded ou números mágicos no código**. Sempre extraia para constants, enums ou configurações.
+
+#### 1. Constantes para Valores Fixos
+
+**❌ Evitar:**
+
+```tsx
+// Hardcode direto no código
+if (status === "AVAILABLE") {
+  // ...
+}
+
+const maxRetries = 3;
+const timeout = 5000;
+```
+
+**✅ Preferir:**
+
+```tsx
+// shared/constants/api.ts
+export const API_CONFIG = {
+  MAX_RETRIES: 3,
+  TIMEOUT_MS: 5000,
+  STALE_TIME_MS: 5 * 60 * 1000, // 5 minutos
+} as const;
+
+// Uso
+if (status === StatusTopic.AVAILABLE) {
+  // ...
+}
+```
+
+#### 2. Enums para Valores Discretos
+
+**Sempre use enums** quando houver um conjunto fixo de valores possíveis:
+
+**❌ Evitar:**
+
+```tsx
+type Status = "AVAILABLE" | "COMING_SOON";
+type Variant = "HTML" | "JAVASCRIPT" | "REACT";
+
+if (status === "AVAILABLE") {
+  // ...
+}
+```
+
+**✅ Preferir:**
+
+```tsx
+// shared/constants/topics.ts
+export enum StatusTopic {
+  AVAILABLE = "AVAILABLE",
+  COMING_SOON = "COMING_SOON",
+}
+
+export enum VariantTopic {
+  HTML = "HTML",
+  JAVASCRIPT = "JAVASCRIPT",
+  REACT = "REACT",
+}
+
+// Uso
+if (status === StatusTopic.AVAILABLE) {
+  // ...
+}
+```
+
+**Exemplo real do projeto:**
+
+```tsx
+// shared/constants/language.ts
+export enum Language {
+  HTML = "html",
+  JAVASCRIPT = "javascript",
+  REACT = "react",
+}
+
+export const ICON_LANGUAGE: Record<Language, string> = {
+  [Language.HTML]: "/assets/svg/html.svg",
+  [Language.JAVASCRIPT]: "/assets/svg/js.svg",
+  [Language.REACT]: "/assets/svg/react.svg",
+};
+```
+
+#### 3. Números Mágicos
+
+**❌ Evitar:**
+
+```tsx
+// Números mágicos sem contexto
+const normalizedName = normalizeText(name, 25);
+const normalizedCity = normalizeText(city, 15);
+if (entry.count >= 20) {
+  // ...
+}
+```
+
+**✅ Preferir:**
+
+```tsx
+// modules/donate/server/pix/constants.ts
+export const PIX_LIMITS = {
+  MAX_NAME_LENGTH: 25,
+  MAX_CITY_LENGTH: 15,
+} as const;
+
+// app/api/pix/constants.ts
+export const RATE_LIMIT = {
+  WINDOW_MS: 60_000, // 60 segundos
+  MAX_REQUESTS: 20,
+} as const;
+
+// Uso
+const normalizedName = normalizeText(name, PIX_LIMITS.MAX_NAME_LENGTH);
+if (entry.count >= RATE_LIMIT.MAX_REQUESTS) {
+  // ...
+}
+```
+
+#### 4. Strings Hardcoded
+
+**❌ Evitar:**
+
+```tsx
+// Strings hardcoded
+return NextResponse.json({ error: "Too Many Requests" }, { status: 429 });
+const txid = "***";
+```
+
+**✅ Preferir:**
+
+```tsx
+// shared/constants/http.ts
+export const HTTP_STATUS = {
+  TOO_MANY_REQUESTS: 429,
+  INTERNAL_SERVER_ERROR: 500,
+} as const;
+
+export const HTTP_MESSAGES = {
+  TOO_MANY_REQUESTS: "Too Many Requests",
+  SERVER_ERROR: "Configuração do servidor incompleta",
+} as const;
+
+// modules/donate/server/pix/constants.ts
+export const PIX_DEFAULTS = {
+  TXID: "***",
+} as const;
+
+// Uso
+return NextResponse.json(
+  { error: HTTP_MESSAGES.TOO_MANY_REQUESTS },
+  { status: HTTP_STATUS.TOO_MANY_REQUESTS }
+);
+```
+
+#### 5. URLs e Paths
+
+**❌ Evitar:**
+
+```tsx
+// URLs hardcoded
+const qrCodeUrl = `https://quickchart.io/qr?text=${encodedPayload}`;
+const apiUrl = "/api/pix";
+```
+
+**✅ Preferir:**
+
+```tsx
+// shared/constants/api.ts
+export const API_ENDPOINTS = {
+  PIX: "/api/pix",
+} as const;
+
+export const EXTERNAL_SERVICES = {
+  QUICKCHART_QR: "https://quickchart.io/qr",
+} as const;
+
+// Uso
+const qrCodeUrl = `${EXTERNAL_SERVICES.QUICKCHART_QR}?text=${encodedPayload}`;
+```
+
+#### 6. Regras de Negócio
+
+**❌ Evitar:**
+
+```tsx
+// Regras de negócio hardcoded
+if (!key || !name || !city || !Number.isFinite(amount) || amount <= 0) {
+  throw new Error("Invalid Pix payload input");
+}
+```
+
+**✅ Preferir:**
+
+```tsx
+// modules/donate/server/pix/constants.ts
+export const PIX_VALIDATION = {
+  MIN_AMOUNT: 0,
+  REQUIRED_FIELDS: ["key", "name", "city", "amount"] as const,
+} as const;
+
+// modules/donate/server/pix/validators.ts
+export function validatePixInput(input: PixPayloadInput): void {
+  if (!input.key || !input.name || !input.city) {
+    throw new Error("Campos obrigatórios ausentes");
+  }
+  if (
+    !Number.isFinite(input.amount) ||
+    input.amount <= PIX_VALIDATION.MIN_AMOUNT
+  ) {
+    throw new Error("Valor inválido");
+  }
+}
+```
+
+### Checklist de Revisão
+
+Antes de commitar, verifique:
+
+- [ ] Não há strings hardcoded (exceto em constants)
+- [ ] Não há números mágicos (valores devem estar em constants)
+- [ ] Valores discretos usam enums
+- [ ] URLs e paths estão em constants
+- [ ] Mensagens de erro estão centralizadas
+- [ ] Valores de configuração estão em constants
+- [ ] Regras de negócio estão documentadas em constants ou validators
 
 ## 📱 Responsividade
 
@@ -277,8 +526,10 @@ O projeto usa os breakpoints padrão do Tailwind:
 ### Queries e Cache
 
 - **React Query** para gerenciamento de estado assíncrono
-- **Stale time**: 5 minutos para dados de Pix
-- **Retry**: 1 tentativa para requisições de API
+- **Stale time**: 5 minutos para dados de Pix (deve estar em constant)
+- **Retry**: 1 tentativa para requisições de API (deve estar em constant)
+
+⚠️ **Nota**: Esses valores devem ser extraídos para constants seguindo o padrão de eliminação de números mágicos.
 
 ## 📦 Versionamento
 

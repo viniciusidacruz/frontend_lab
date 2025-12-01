@@ -6,6 +6,7 @@ import {
   getContentDefinition,
   CONTENT_CATEGORIES,
 } from "@/modules/categories/utils";
+import { DEFAULT_METADATA, createMetadata } from "@/shared/constants";
 
 type PageProps = {
   params: Promise<{
@@ -33,10 +34,11 @@ export async function generateMetadata({
     return {};
   }
 
-  return {
-    title: `${content.title} | Frontend Lab`,
+  return createMetadata({
+    title: `${content.title} | ${DEFAULT_METADATA.siteName}`,
     description: content.description,
-  };
+    url: `${DEFAULT_METADATA.url}/${category}/${component}`,
+  });
 }
 
 export default async function Page({ params }: Readonly<PageProps>) {

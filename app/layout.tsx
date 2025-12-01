@@ -14,12 +14,22 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "Frontend Lab | Estudos de Vinicius Italo da Cruz",
-  description: "Frontend Lab| Estudos de Vinicius Italo da Cruz",
+  description:
+    "Laboratório de estudos e experimentos focado em recursos nativos, arquiteturas e boas práticas para desenvolvedores frontend.",
   icons: {
     icon: "/assets/svg/logo-collapsed.svg",
     apple: "/assets/svg/logo-collapsed.svg",
   },
-  keywords: ["HTML", "JavaScript", "React", "Next.js", "Tailwind CSS"],
+  keywords: [
+    "HTML",
+    "JavaScript",
+    "React",
+    "Next.js",
+    "Tailwind CSS",
+    "Frontend",
+    "Desenvolvimento Web",
+    "Arquitetura de Software",
+  ],
   authors: [
     {
       name: "Vinicius Italo da Cruz",
