@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { ContentRenderer } from "./ContentRenderer";
-import { getContentDefinition } from "@/shared/content";
+import { CONTENT_CATEGORIES, getContentDefinition } from "@/shared/content";
 
 type PageProps = {
   params: {
@@ -10,6 +10,15 @@ type PageProps = {
     component: string;
   };
 };
+
+export function generateStaticParams() {
+  return CONTENT_CATEGORIES.flatMap((category) =>
+    category.items.map((item) => ({
+      category: category.slug,
+      component: item.slug,
+    }))
+  );
+}
 
 export function generateMetadata({ params }: PageProps): Metadata {
   const content = getContentDefinition(params.category, params.component);
