@@ -16,7 +16,7 @@ function getClientIp(request: NextRequest): string {
   const forwardedFor = request.headers.get("x-forwarded-for");
   const realIp = request.headers.get("x-real-ip");
 
-  return (forwardedFor ?? realIp ?? request.ip ?? "unknown").split(",")[0].trim();
+  return (forwardedFor ?? realIp ?? "unknown").split(",")[0].trim();
 }
 
 function isRateLimited(ip: string): boolean {
@@ -49,20 +49,34 @@ export async function GET(request: NextRequest) {
   const city = process.env.PIX_CITY;
   const amountEnv = process.env.PIX_DEFAULT_AMOUNT;
 
-  if (!pixKey || !receiverName || !city || !amountEnv) {
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  const missingVars: string[] = [];
+  if (!pixKey) missingVars.push("PIX_KEY");
+  if (!receiverName) missingVars.push("PIX_RECEIVER_NAME");
+  if (!city) missingVars.push("PIX_CITY");
+  if (!amountEnv) missingVars.push("PIX_DEFAULT_AMOUNT");
+
+  if (missingVars.length > 0) {
+    console.error(`Missing environment variables: ${missingVars.join(", ")}`);
+    return NextResponse.json(
+      { error: "Configuração do servidor incompleta" },
+      { status: 500 }
+    );
   }
 
   const amount = Number(amountEnv);
 
   if (!Number.isFinite(amount) || amount <= 0) {
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    console.error(`Invalid PIX_DEFAULT_AMOUNT: ${amountEnv}`);
+    return NextResponse.json(
+      { error: "Valor do Pix inválido" },
+      { status: 500 }
+    );
   }
 
   const payload = generatePixPayload({
-    key: pixKey,
-    name: receiverName,
-    city,
+    key: pixKey!,
+    name: receiverName!,
+    city: city!,
     amount,
     txid: "***",
   });

@@ -5,13 +5,17 @@ import { useState } from "react";
 export const useCopyToClipboard = () => {
   const [isCopied, setIsCopied] = useState(false);
 
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(JSON.stringify(text));
-    setIsCopied(true);
+  const copyToClipboard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setIsCopied(true);
 
-    setTimeout(() => {
-      setIsCopied(false);
-    }, 2000);
+      setTimeout(() => {
+        setIsCopied(false);
+      }, 2000);
+    } catch (error) {
+      console.error("Failed to copy to clipboard:", error);
+    }
   };
 
   return { isCopied, copyToClipboard };

@@ -1,11 +1,17 @@
 import type { NextConfig } from "next";
 
+const isDevelopment = process.env.NODE_ENV === "development";
+
 const cspDirectives = [
   "default-src 'self'",
-  "script-src 'self'",
+  isDevelopment
+    ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
+    : "script-src 'self' 'unsafe-inline'",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: https://github.com https://quickchart.io",
-  "connect-src 'self'",
+  isDevelopment
+    ? "connect-src 'self' ws://localhost:* wss://localhost:*"
+    : "connect-src 'self'",
   "font-src 'self' data:",
   "object-src 'none'",
   "base-uri 'self'",
