@@ -21,8 +21,8 @@ type PostQueryData = {
 };
 
 const POSTS_QUERY = `
-  query GetPosts {
-    posts(orderBy: publishedAt_DESC, stage: PUBLISHED) {
+  query GetPosts($where: PostWhereInput) {
+    posts(orderBy: publishedAt_DESC, stage: PUBLISHED, where: $where) {
       id
       publishedAt
       title
@@ -52,8 +52,24 @@ const POST_BY_SLUG_QUERY = `
   }
 `;
 
-export async function getPosts(): Promise<Post[]> {
-  const data = await graphqlFetch<PostsQueryData>(POSTS_QUERY);
+const buildSearchWhere = (search?: string) => {
+  if (!search) {
+    return undefined;
+  }
+
+  return {
+    OR: [
+      { title_contains: search },
+      { excerpt_contains: search },
+      { content_contains: search },
+    ],
+  } satisfies Record<string, unknown>;
+};
+
+export async function getPosts(search?: string): Promise<Post[]> {
+  const where = buildSearchWhere(search?.trim());
+  const variables = where ? ({ where } as Record<string, unknown>) : undefined;
+  const data = await graphqlFetch<PostsQueryData>(POSTS_QUERY, variables);
   return data.posts;
 }
 
