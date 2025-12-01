@@ -2,6 +2,7 @@ import { Poppins } from "next/font/google";
 
 import { Aside } from "@/shared/components";
 import { Providers } from "@/shared/providers";
+import { DEFAULT_METADATA, createMetadata, AUTHOR } from "@/shared/constants";
 
 import "./globals.css";
 
@@ -11,10 +12,12 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-export const metadata: Metadata = {
-  title: "Frontend Lab | Estudos de Vinicius Italo da Cruz",
-  description:
-    "Laboratório de estudos e experimentos focado em recursos nativos, arquiteturas e boas práticas para desenvolvedores frontend.",
+export const metadata = {
+  ...createMetadata({
+    title: DEFAULT_METADATA.title,
+    description: DEFAULT_METADATA.description,
+    url: DEFAULT_METADATA.url,
+  }),
   icons: {
     icon: "/assets/svg/logo-collapsed.svg",
     apple: "/assets/svg/logo-collapsed.svg",
@@ -31,8 +34,8 @@ export const metadata: Metadata = {
   ],
   authors: [
     {
-      name: "Vinicius Italo da Cruz",
-      url: "https://github.com/viniciusidacruz",
+      name: AUTHOR.name,
+      url: AUTHOR.github,
     },
   ],
 };
