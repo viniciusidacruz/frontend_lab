@@ -4,15 +4,9 @@ import Image from "next/image";
 import { useEffect } from "react";
 import { Home, RefreshCw, ArrowRight } from "lucide-react";
 
-import { PROJECT } from "@/shared/constants";
-import { ERROR_QUICK_LINKS } from "@/modules/error/constants/quick-links";
-import {
-  ErrorNumber,
-  ErrorMessage,
-  ActionButton,
-  ResetButton,
-  QuickLinks,
-} from "@/modules/error/components";
+import { PROJECT, QUICK_LINKS } from "@/shared/constants";
+import { ErrorNumber, ActionButton, QuickLinks } from "@/shared/components";
+import { ErrorMessage, ResetButton } from "@/modules/error/components";
 
 interface ErrorBoundaryProps {
   readonly error: Error & { readonly digest?: string };
@@ -60,7 +54,7 @@ export default function ErrorPage({
           </ResetButton>
         </div>
 
-        <QuickLinks links={ERROR_QUICK_LINKS} />
+        <QuickLinks links={QUICK_LINKS} />
       </div>
     </div>
   );

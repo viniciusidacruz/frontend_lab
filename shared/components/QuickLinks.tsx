@@ -1,9 +1,5 @@
 import Link from "next/link";
-
-export interface QuickLink {
-  readonly href: string;
-  readonly label: string;
-}
+import type { QuickLink } from "@/shared/constants";
 
 interface QuickLinksProps {
   readonly links: ReadonlyArray<QuickLink>;

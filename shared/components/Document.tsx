@@ -69,7 +69,7 @@ const Pre = ({ children }: PreProps) => {
         {isCopied ? "Copiado" : "Copiar"}
       </button>
 
-      <pre>{children}</pre>
+      <pre className="bg-zinc-900">{children}</pre>
     </div>
   );
 };

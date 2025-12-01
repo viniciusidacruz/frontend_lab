@@ -21,6 +21,7 @@ export const ActionButton = ({
   <Link
     href={href}
     className={cn(
+      "group flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all",
       BUTTON_VARIANT_CLASSNAMES[variant]
     )}
   >
@@ -37,3 +38,4 @@ export const ActionButton = ({
     )}
   </Link>
 );
+
