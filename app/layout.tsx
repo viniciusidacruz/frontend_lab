@@ -39,7 +39,7 @@ export default function RootLayout({
         <Providers>
           <Aside />
 
-          <main className="flex-1 p-8">{children}</main>
+          <main className="flex-1 p-4 sm:p-8">{children}</main>
         </Providers>
       </body>
     </html>

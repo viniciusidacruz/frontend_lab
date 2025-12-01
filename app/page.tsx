@@ -10,7 +10,7 @@ export default async function Home() {
   const topics = await getContentTopics();
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8 sm:px-8 sm:py-12">
+    <div className="max-w-5xl mx-auto px-2 py-4 sm:px-8 sm:py-12">
       <header className="text-center mb-16">
         <Image
           src={PROJECT.logo}

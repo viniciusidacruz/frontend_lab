@@ -48,7 +48,7 @@ export default async function Page({ params }: Readonly<PageProps>) {
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8 sm:px-8 sm:py-12">
+    <div className="max-w-5xl mx-auto px-2 py-4 sm:px-8 sm:py-12">
       <ContentRenderer content={content} />
     </div>
   );

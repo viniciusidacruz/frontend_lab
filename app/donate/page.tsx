@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 
 export default function Donate() {
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8 sm:px-8 sm:py-12">
+    <div className="max-w-5xl mx-auto px-2 py-4 sm:px-8 sm:py-12">
       <DonateHeader
         title={DONATE_CONTENT.hero.title}
         subtitle={DONATE_CONTENT.hero.subtitle}
