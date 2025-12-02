@@ -21,8 +21,8 @@ type PostQueryData = {
 };
 
 const POSTS_QUERY = `
-  query GetPosts($where: PostWhereInput) {
-    posts(orderBy: publishedAt_DESC, stage: PUBLISHED, where: $where) {
+  query GetPosts($where: PostWhereInput, $first: Int) {
+    posts(orderBy: publishedAt_DESC, stage: PUBLISHED, where: $where, first: $first) {
       id
       publishedAt
       title
@@ -67,7 +67,14 @@ const buildSearchWhere = (search?: string) => {
 
 export async function getPosts(search?: string): Promise<Post[]> {
   const where = buildSearchWhere(search?.trim());
-  const variables = where ? ({ where } as Record<string, unknown>) : undefined;
+  const variables: Record<string, unknown> = {
+    first: 1000, // Limite alto para buscar todos os posts
+  };
+  
+  if (where) {
+    variables.where = where;
+  }
+  
   const data = await graphqlFetch<PostsQueryData>(POSTS_QUERY, variables);
   return data.posts;
 }

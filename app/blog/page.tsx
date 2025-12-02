@@ -31,8 +31,11 @@ export default async function Blog({ searchParams }: Readonly<BlogPageProps>) {
 
   const posts = await getPosts(searchTerm);
 
+  console.log(posts);
+
   const featuredPosts = posts.filter((post) => post.featured);
   const regularPosts = posts.filter((post) => !post.featured);
+  const allPosts = [...regularPosts, ...featuredPosts];
   const totalPosts = posts.length;
 
   return (
@@ -43,9 +46,9 @@ export default async function Blog({ searchParams }: Readonly<BlogPageProps>) {
         <SearchBar defaultValue={searchTerm} />
       </div>
 
-      <FeaturedPosts posts={featuredPosts} />
+      <PostsList posts={allPosts} totalCount={totalPosts} />
 
-      <PostsList posts={regularPosts} totalCount={totalPosts} />
+      {featuredPosts.length > 0 && <FeaturedPosts posts={featuredPosts} />}
     </div>
   );
 }
