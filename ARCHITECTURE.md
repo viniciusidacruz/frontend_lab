@@ -28,6 +28,8 @@ Este documento descreve a arquitetura, padrões e decisões de design do projeto
 │   ├── blog/                   # Módulo do blog
 │   │   ├── components/         # Componentes específicos do blog
 │   │   ├── constants/          # Constantes do blog
+│   │   ├── events/             # Eventos PostHog do blog (pasta dedicada)
+│   │   │   └── index.ts        # Definições de eventos do módulo
 │   │   └── utils/              # Utilitários do blog
 │   ├── categories/             # Módulo de categorias/conteúdos HTML
 │   │   ├── components/         # Demos e componentes de renderização
@@ -35,6 +37,9 @@ Este documento descreve a arquitetura, padrões e decisões de design do projeto
 │   │   ├── types/              # Tipos TypeScript
 │   │   └── utils/              # Utilitários de processamento
 │   ├── donate/                 # Módulo de doações
+│   │   ├── constants/          # Constantes do módulo de doações
+│   │   ├── events/             # Eventos PostHog de doações (pasta dedicada)
+│   │   │   └── index.ts        # Definições de eventos do módulo
 │   │   └── server/
 │   │       └── pix/            # Lógica server-side do Pix
 │   │           ├── emv.ts      # Geração de payload EMV
@@ -44,10 +49,12 @@ Este documento descreve a arquitetura, padrões e decisões de design do projeto
 ├── shared/                     # Camada compartilhada entre módulos
 │   ├── components/             # Componentes UI reutilizáveis
 │   ├── constants/               # Constantes globais
+│   │   └── events.ts           # Eventos PostHog compartilhados
 │   ├── hooks/                  # Hooks customizados
 │   ├── providers/              # Providers globais (React Query, etc.)
 │   ├── queries/                # Queries e fetch de dados
 │   └── config/                 # Configurações e utilitários
+│       └── events.ts           # Função utilitária para capturar eventos
 └── public/
     └── assets/
         ├── svg/                # Ícones e logos
@@ -73,6 +80,8 @@ Cada módulo pode conter:
 modules/[dominio]/
 ├── components/     # Componentes específicos do domínio
 ├── constants/      # Constantes e dados do domínio
+├── events/         # Eventos PostHog do módulo (pasta dedicada)
+│   └── index.ts   # Definições de eventos e tipos
 ├── types/          # Tipos TypeScript do domínio
 ├── utils/          # Funções utilitárias do domínio
 └── server/         # Lógica server-side (se necessário)
@@ -604,6 +613,145 @@ A organização por módulos permite:
 - **Segurança de tipos**: Menos bugs em runtime
 - **Documentação**: Tipos servem como documentação
 - **Refatoração**: Mudanças seguras com suporte da IDE
+
+## 📊 Analytics e Eventos (PostHog)
+
+### Organização de Eventos
+
+O projeto usa **PostHog** para analytics e tracking de eventos. A organização segue a arquitetura modular:
+
+#### Estrutura de Eventos
+
+```
+shared/
+├── config/
+│   └── events.ts              # Função utilitária capturePostHogEvent()
+└── constants/
+    └── events.ts              # Eventos compartilhados/globais (SHARED_EVENTS)
+
+modules/
+├── blog/
+│   └── events/                # Pasta dedicada para eventos do módulo
+│       └── index.ts           # Eventos do módulo blog (BLOG_EVENTS)
+└── donate/
+    └── events/                # Pasta dedicada para eventos do módulo
+        └── index.ts           # Eventos do módulo donate (DONATE_EVENTS)
+```
+
+#### Por que eventos em pasta dedicada dentro do módulo?
+
+**1. Isolamento e Coesão**
+
+- Eventos são específicos do domínio do módulo
+- Manter eventos dentro do módulo garante que toda lógica relacionada ao domínio fique coesa
+- Facilita a manutenção: ao trabalhar no módulo, todos os eventos relacionados estão no mesmo lugar
+
+**2. Escalabilidade**
+
+- Conforme o módulo cresce, pode haver múltiplos arquivos de eventos (ex: `user-events.ts`, `content-events.ts`)
+- Uma pasta dedicada permite organizar melhor sem poluir `constants/`
+- Permite adicionar utilitários específicos de eventos (ex: `helpers.ts`, `validators.ts`)
+
+**3. Clareza de Responsabilidade**
+
+- `constants/` é para valores fixos e configurações
+- `events/` é especificamente para definições de analytics e tracking
+- Separação clara facilita navegação e entendimento do código
+
+**4. Consistência Arquitetural**
+
+- Segue o princípio de organização por funcionalidade dentro do módulo
+- Cada pasta tem uma responsabilidade única e bem definida
+- Facilita onboarding de novos desenvolvedores
+
+#### Regras de Organização
+
+1. **Eventos específicos de módulo** → `modules/[modulo]/events/index.ts`
+
+   - Cada módulo define seus próprios eventos em uma pasta dedicada
+   - Exemplo: `BLOG_EVENTS.SEARCH`, `BLOG_EVENTS.POST_CLICKED`
+   - **Justificativa**: Eventos são parte da lógica de domínio do módulo e devem estar isolados
+
+2. **Eventos compartilhados** → `shared/constants/events.ts`
+
+   - Eventos usados em múltiplos módulos ou componentes globais
+   - Exemplo: `SHARED_EVENTS.ACTION_BUTTON_CLICKED`, `SHARED_EVENTS.CONTENT_CARD_VIEWED`
+   - **Justificativa**: Eventos globais não pertencem a um módulo específico
+
+3. **Função de captura** → `shared/config/events.ts`
+   - Função utilitária `capturePostHogEvent()` centralizada
+   - Pode ser usada em Server e Client Components
+   - **Justificativa**: Infraestrutura compartilhada, não lógica de domínio
+
+#### Uso de Eventos
+
+**✅ Correto:**
+
+```tsx
+// modules/blog/components/SearchBar.tsx
+import { capturePostHogEvent } from "@/shared/config";
+import { BLOG_EVENTS } from "@/modules/blog/events";
+
+capturePostHogEvent(BLOG_EVENTS.SEARCH, {
+  search_term: term,
+  has_term: true,
+});
+```
+
+```tsx
+// shared/components/ActionButton.tsx
+import { capturePostHogEvent } from "@/shared/config";
+import { SHARED_EVENTS } from "@/shared/constants";
+
+capturePostHogEvent(SHARED_EVENTS.ACTION_BUTTON_CLICKED, {
+  href,
+  variant,
+  label,
+});
+```
+
+**❌ Evitar:**
+
+```tsx
+// Strings hardcoded
+capturePostHogEvent("blog_search", { ... });
+capturePostHogEvent("post_clicked", { ... });
+```
+
+#### Tipos TypeScript
+
+Cada arquivo de eventos define tipos para as propriedades:
+
+```tsx
+// modules/blog/events/index.ts
+export interface BlogSearchEventProperties {
+  readonly search_term: string;
+  readonly has_term: boolean;
+}
+
+export interface PostClickedEventProperties {
+  readonly post_slug: string;
+  readonly post_title: string;
+  readonly is_featured: boolean;
+}
+```
+
+#### Eventos Atuais
+
+**Módulo Blog:**
+
+- `BLOG_EVENTS.SEARCH` - Busca no blog
+- `BLOG_EVENTS.POST_CLICKED` - Clique em post
+
+**Módulo Donate:**
+
+- `DONATE_EVENTS.PIX_COPIED` - Cópia do código Pix
+- `DONATE_EVENTS.PLATFORM_CLICKED` - Clique em plataforma de doação
+
+**Compartilhados:**
+
+- `SHARED_EVENTS.ACTION_BUTTON_CLICKED` - Clique em botão de ação
+- `SHARED_EVENTS.CONTENT_CARD_VIEWED` - Visualização de card de conteúdo
 
 ---
 

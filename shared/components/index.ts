@@ -3,6 +3,7 @@ export * from "./Aside";
 export * from "./AsideLink";
 export * from "./Button";
 export * from "./ContentCard";
+export * from "./ContentCardWrapper";
 export * from "./Document";
 export * from "./ErrorNumber";
 export * from "./ListMenu";

@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ExternalLink, User } from "lucide-react";
 
-import { ContentCard } from "@/shared/components";
+import { ContentCardWrapper } from "@/shared/components";
 import {
   AUTHOR,
   PROJECT,
@@ -89,12 +89,7 @@ export default async function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {topics.map((topic) => (
-            <ContentCard.Root key={topic.id} topic={topic}>
-              <ContentCard.Tags
-                tags={topic.tags}
-                variant={topic.variantsTopic}
-              />
-            </ContentCard.Root>
+            <ContentCardWrapper key={topic.id} topic={topic} />
           ))}
         </div>
       </section>

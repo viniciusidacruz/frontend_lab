@@ -1,5 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
+import { capturePostHogEvent } from "@/shared/config";
+import { DONATE_EVENTS } from "@/modules/donate/events";
 import { useCopyToClipboard } from "./useCopyToClipboard";
 
 interface PixResponse {
@@ -61,6 +63,9 @@ export function usePixDonation() {
   const handleCopy = () => {
     if (!payload) return;
     copyToClipboard(payload);
+    capturePostHogEvent(DONATE_EVENTS.PIX_COPIED, {
+      has_payload: true,
+    });
   };
 
   const errorMessage = error instanceof Error ? error.message : null;
