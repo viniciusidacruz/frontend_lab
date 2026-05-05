@@ -20,6 +20,8 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = await getPostBySlug(slug);
 
+  console.log("post", post);
+
   if (!post) {
     return createMetadata({
       title: `Post não encontrado | ${DEFAULT_METADATA.siteName}`,
